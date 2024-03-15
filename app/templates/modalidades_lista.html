@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ Titulo }}</title>
+    <title>{{ titulo }}</title>
 </head>
 <body>
     <div class="container">
@@ -16,12 +16,11 @@
                 </tr>
             </thead>
             <tbody>
+                {% for modalidade in modalidades_lista %}
                 <tr>
-                    <td>RDC Flexível</td>
-                    <td>0</td>
-                    <td>5000</td>
-                    <td>Regressivo</td>
+                    <td>{{ modalidade }}</td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
