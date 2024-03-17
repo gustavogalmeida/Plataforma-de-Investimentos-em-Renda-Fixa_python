@@ -1,9 +1,30 @@
-from flask import  render_template
+from flask import  render_template, request, redirect
 from app import app
+from app import models
+
+modalidade_lista = []
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @app.route('/modalidades')
 def modalidades():
-    modalidades_lista = ['RDC', 'LCA', 'LCI']
     return render_template('modalidades_lista.html',
-                           modalidades_lista = modalidades_lista,
+                           modalidades_lista = modalidade_lista,
                            titulo='Lista de modalidades - Plataforma de investimentos')
+@app.route('/nova')
+def nova_modalidade():
+    return render_template('modalidades_novo.html', titulo='Nova modalidade')
+
+@app.route('/gravar_modalidade', methods=['POST',])
+def gravar_modalidade():
+    codigo = request.form['codigo']
+    descricao = request.form['descricao']
+    tipo = request.form['tipo_group']
+    resgate = request.form['resgate_group']
+    prazo_minimo = request.form['prazo_minimo']
+    prazo_maximo = request.form['prazo_maximo']
+    modalidade = models.Modalidades(codigo, descricao, tipo, resgate, prazo_minimo, prazo_maximo)
+    modalidade_lista.append(modalidade)
+    return redirect('/modalidades')
