@@ -6,19 +6,22 @@
 </head>
 <body>
     <div class="container">
-        <table clas="table table-striped table-responsive table-borded">
+        <table clas="table table-striped table-responsive table-bordered">
             <thead>
                 <tr>
-                    <th>Nome modalidade</th>
+                    <th>Descrição modalidade</th>
                     <th>Prazo mínimo</th>
                     <th>Prazo maxímo</th>
-                    <th>IR</th>
+                    <th>Resgate automático</th>
                 </tr>
             </thead>
             <tbody>
                 {% for modalidade in modalidades_lista %}
                 <tr>
-                    <td>{{ modalidade }}</td>
+                    <td>{{ modalidade.descricao }}</td>
+                    <td>{{ modalidade.prazo_minimo }}</td>
+                    <td>{{ modalidade.prazo_maximo }}</td>
+                    <td>{{ modalidade.resgate_automatico }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
