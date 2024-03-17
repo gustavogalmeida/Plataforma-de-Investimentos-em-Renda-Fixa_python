@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Plataforma de Investimentos em Renda Fixa</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="page-header text-center">
+                <h1>{{ titulo }}</h1>
+            </div>
+        </div>
+
+        {% block conteudo %} {% endblock %}
+
+    </body>
+</html>
