@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ titulo }}</title>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>Formulário para cadastro de modalidades</h1>
+        </div>
+    </div>
+    <form action="/gravar_modalidade" method="post">
+        <fieldset>
+            <div class="form-group">
+                <label for="codigo">Codigo</label><br>
+                <input type="number" id="codigo" name="codigo" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="descricao">Descrição</label><br>
+                <input type="text" id="descricao" name="descricao" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="prazo_minimo">Prazo mínimo</label><br>
+                <input type="number" name="prazo_minimo" id="prazo_minimo" class="form-control">
+            </div>
+            <div>
+                <label for="prazo_maximo">Prazo maximo</label><br>
+                <input type="number" name="prazo_maximo" id="prazo_maximo" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Tipo</label></br>
+                <input type="radio" name="tipo_group" id="RDC" value="RDC" class="form-control">
+                <label for="RDC">RDC</label>
+                <input type="radio" name="tipo_group" id="LCA" value="LCA" class="form-control">
+                <label for="LCA">LCA</label>
+                <input type="radio" name="tipo_group" id="LCI" value="LCI" class="form-control">
+                <label for="LCI">LCI</label>
+            </div>
+            <div class="form-group">
+                <label>Resgate automatico</label><br>
+                <input type="radio" name="resgate_group" id="sim" value="sim" class="form-control">
+                <label for="sim">Sim</label>
+                <input type="radio" name="resgate_group" id="nao" value="nao" class="form-control">
+                <label for="nao">Não</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-salvar">Salvar</button>
+        </fieldset>
+    </form>
+
+</body>
+</html>
