@@ -31,3 +31,14 @@ def gravar_modalidade():
     modalidade_lista.append(modalidade)
 
     return redirect('/modalidades')
+
+@app.route('/login')
+def login():
+    return render_template('login.html', titulo='Faça seu login para continuar')
+
+@app.route('/autenticar', methods=['POST', ])
+def autenticar():
+    if request.form['senha'] == '123':
+        return redirect('/modalidades')
+    else:
+        return redirect('login')
