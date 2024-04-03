@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Plataforma de Investimentos em Renda Fixa</title>
-    <link rel="stylesheet" href="../static/css/bootstrap.css">
-</head>
-<body>
+{% extends "template.html" %}
+{% block conteudo %}
     <h1>Plataforma de Investimentos em Renda Fixa</h1>
+    <div class="container">
+        <a href="{{ url_for('modalidades')}}"><button type="submit" class="btn btn-primary btn-salvar">Modalidades</button></a>
+    </div>
+{% endblock %}
 </body>
 </html>
