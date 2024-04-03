@@ -39,6 +39,6 @@ def login():
 @app.route('/autenticar', methods=['POST', ])
 def autenticar():
     if request.form['senha'] == '123':
-        return redirect('/modalidades')
+        return redirect('/')
     else:
         return redirect('login')
