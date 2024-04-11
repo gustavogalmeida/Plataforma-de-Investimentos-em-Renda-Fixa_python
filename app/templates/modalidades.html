@@ -1,7 +1,7 @@
 {% extends "template.html" %}
 {% block conteudo %}
         <div class="container">
-            <form action="/gravar_modalidade" method="post" class="container text-left col-9">
+            <form action="{{ url_for('gravar_modalidade') }}" method="post" class="container text-left col-9">
                 <fieldset>
                     <label for="tipo_group">Tipo da modalidade</label>
                     <div>

@@ -1,9 +1,10 @@
 {% extends "template.html" %}
 {% block conteudo %}
-    <form action="/autenticar" method="POST">
+    <form action="{{ url_for('autenticar') }}" method="POST">
         <div class="container">
-            <label for="login">Login</label><br>
-            <input type="text" name="login" class="form-control" required><br>
+            
+            <label for="usuario">Usuario</label><br>
+            <input type="text" name="usuario" class="form-control" required><br>
             <label for="senha">Senha</label><br>
             <input type="password" name="senha" class="form-control" required><br>
             <button type="submit" class="btn btn-primary">Entrar</button>

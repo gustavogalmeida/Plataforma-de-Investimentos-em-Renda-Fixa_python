@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, session, flash, url_for
 from app import app
 from app import models
 
@@ -10,6 +10,9 @@ def index():
 
 @app.route('/modalidades')
 def modalidades():
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        flash('Você precisa estar conectado para acessar este recurso!')
+        return redirect (url_for('login'))       
     return render_template('modalidades.html',
                            modalidades_lista = modalidade_lista,
                            titulo='Lista de modalidades - Plataforma de investimentos')
@@ -30,7 +33,7 @@ def gravar_modalidade():
     
     modalidade_lista.append(modalidade)
 
-    return redirect('/modalidades')
+    return redirect(url_for('modalidades'))
 
 @app.route('/login')
 def login():
@@ -39,6 +42,15 @@ def login():
 @app.route('/autenticar', methods=['POST', ])
 def autenticar():
     if request.form['senha'] == '123':
-        return redirect('/')
+        session['usuario_logado'] = request.form['usuario']
+        flash('Bem vindo(a), ' + session['usuario_logado'] + '!')
+        return redirect(url_for('index'))
     else:
-        return redirect('login')
+        flash('Por gentileza, verifique suas credênciais.')
+        return redirect(url_for('login'))
+    
+@app.route('/logout')
+def logout():
+    session['usuario_logado'] = None
+    flash('Usuário desconectado com sucesso!')
+    return redirect (url_for('login'))
