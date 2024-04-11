@@ -6,7 +6,7 @@ modalidade_lista = []
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html'), 200
 
 @app.route('/modalidades')
 def modalidades():
@@ -28,8 +28,8 @@ def gravar_modalidade():
     prazo_minimo = request.form['prazo_minimo']
     prazo_maximo = request.form['prazo_maximo']
 
-    modalidade = models.Modalidades(descricao, tipo, resgate,
-                                    prazo_minimo, prazo_maximo)
+    modalidade = models.Modalidades(nome=descricao, tipo=tipo, resgate_automatico=resgate,
+                                    prazo_minimo=prazo_minimo, prazo_maximo=prazo_maximo)
     
     modalidade_lista.append(modalidade)
 
