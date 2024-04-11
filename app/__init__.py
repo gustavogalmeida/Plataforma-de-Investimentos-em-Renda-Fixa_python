@@ -1,7 +1,8 @@
+from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
-import sqlalchemy
 
 app = Flask(__name__)
-db = sqlalchemy(app)
 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:admin@localhost/db_investimentos'
 
+db = SQLAlchemy(app)
