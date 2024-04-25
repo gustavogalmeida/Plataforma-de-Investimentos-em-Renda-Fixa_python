@@ -1,9 +1,14 @@
 {% extends "template.html" %}
 {% block conteudo %}
-    <h1>Plataforma de Investimentos em Renda Fixa</h1>
-    <div class="container">
-        <a href="{{url_for('modalidades')}}"><button type="submit" class="btn btn-primary btn-salvar">Modalidades</button></a>
-    </div>
-{% endblock %}
-</body>
+        <div class="container">
+            <h1>Plataforma de Investimentos em Renda Fixa</h1>
+        </div>
+        <div class="container">
+            <a href="{{url_for('modalidades')}}"><button type="submit" class="btn btn-primary btn-salvar">Modalidades</button></a>
+        </div>
+        <div class="container">
+            <a href="{{url_for('simulacao')}}"><button type="submit" class="btn btn-primary btn-salvar">Simulação</button></a>
+        </div>
+    {% endblock %}
+    </body>
 </html>
