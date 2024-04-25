@@ -16,11 +16,11 @@ except mysql.connector.Error as err:
 
 cursor = conn.cursor()
 
-cursor.execute("DROP DATABASE IF EXISTS `db_investimentos`;")
+cursor.execute("DROP DATABASE IF EXISTS `db_plataforma_investimentos`;")
 
-cursor.execute("CREATE DATABASE `db_investimentos`;")
+cursor.execute("CREATE DATABASE `db_plataforma_investimentos`;")
 
-cursor.execute("USE `db_investimentos`;")
+cursor.execute("USE `db_plataforma_investimentos`;")
 
 # criando tabelas
 TABLES = {}
@@ -56,7 +56,7 @@ modalidades = [
 ]
 cursor.executemany(modalidades_sql, modalidades)
 
-cursor.execute('select * from db_investimentos.modalidades')
+cursor.execute('select * from db_plataforma_investimentos.modalidades')
 print(' -------------  Modalidades:  -------------')
 for modalidade in cursor.fetchall():
     print(modalidade[1])
