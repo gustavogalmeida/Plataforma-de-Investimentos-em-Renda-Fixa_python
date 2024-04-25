@@ -1,0 +1,145 @@
+{% extends "template.html" %}
+{% block conteudo %}
+    <div class="page-header">
+        <div class="page-header text-center"><h1>Simulador de investimentos em renda fixa</h1></div>
+    </div>
+    <div class="container">
+        <form action="/" method="post">
+            <fieldset>
+            <h2>Parametros da Aplicação</h2>
+            <div class="containercolumn">
+                <div class="form-column">
+                    <label for="valor">Valor aplicado</label><br>
+                    <input type="text" id="valor" name="valor" placeholder="1000,00" required/>
+
+                    <label for="prazo">Dias aplicados</label><br>
+                    <input type="text" placeholder="365" name="dias" required>
+
+                    <label for="cdi-aplicacao">CDI Aplicação</label><br>
+                    <input type="text" name="cdi" placeholder="%" required>
+                </div>
+                <div class="form-column">
+                    <label for="selic-meta">SELIC Meta</label><br>
+                    <input type="text" value="10,75% a.a" disabled required>
+
+                    <label for="cdi-meta">CDI Meta</label><br>
+                    <input type="text" value="10,65% a.a" disabled required>
+
+                    <label for="sobras">Porcentagem sobras sobre saldo médio</label><br>
+                    <input type="text" value="0,87%" disabled>
+                </div>
+            </div>
+            <button type="submit">Calcular</button>
+            </fieldset>
+        </form>
+    </div>
+    <div class="container">
+        <form action="/salvar_simulacao" method="post">
+            <fieldset>
+                <h2>Simulação</h2>
+                <div class="containercolumn">
+                    <div class="form-column">
+                        <h3>Dados aplicação</h3>
+
+                        <label for="valor_aplicado">Valor Aplicado</label><br>
+                        <input type="text" name="valor_aplicado" placeholder="R$ 0,00" value="{{ valor_aplicado }}" readonly>
+
+                        <label for="dias">Dias aplicados</label><br>
+                        <input type="text" name="dias" placeholder="0" value="{{ dias }}" readonly>
+                    </div>
+                    <div class="form-column">
+                        <h3>Rentabilidade</h3>
+                        <label for="rentabilidade_paga">Rentabilidade aplicação</label><br>
+                        <input type="text" name="rentabilidade_paga" placeholder="R$ 0,00" value="{{ rentabilidade_paga }}" readonly>
+
+                        <label for="valor_sobras">Sobras previstas</label><br>
+                        <input type="text" name="valor_sobras" placeholder="R$ 0,00" value="{{ valor_sobras }}" readonly>
+
+                        <label for="rentabilidade_bruta_valor">Rentabilidade + Sobras</label><br>
+                        <input type="text" name="rentabilidade_bruta_valor" placeholder="R$ 0,00" value="{{ rentabilidade_bruta_valor }}" readonly>
+                    </div>
+                </div>
+                <div>
+                    <div class="containercolumn">
+                        <div class="form-column">
+                            <h3>Resultado</h3>
+                            <label for="saldo_total">Saldo total</label><br>
+                            <input type="text" name="saldo_total" placeholder="R$ 0,00" value="{{ saldo_total }}" readonly>
+    
+                            <label for="rentabilidade_bruta_porcentagem_aa">Rentabilidade Bruta a.a</label><br>
+                            <input type="text" name="rentabilidade_bruta_porcentagem_aa" placeholder="%" value="{{ rentabilidade_bruta_porcentagem_aa }}" readonly>
+                        </div>
+                        <div class="form-column">
+                            <h3>CDI</h3>
+    
+                            <label for="cdi">CDI aplicação</label><br>
+                            <input type="text" name="cdi" id="cdi" placeholder="%" value="{{ cdi }}" readonly>
+    
+                            <label for="cdi_considerando_sobras">CDI bruto considerando sobras</label><br>
+                            <input type="text" placeholder="%" name="cdi_considerando_sobras" value="{{ cdi_considerando_sobras }}"  readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <p>* Os investimentos em renda fixa pós-fixada atrelada à taxa SELIC estão sujeitos a 
+                    oscilações na taxa básica de juros, o que pode resultar em divergências no valor final.</p>
+                    <p>* As sobras consideram o saldo médio de investimentos no ultimo exercicio de 12 meses. 
+                        Na ultima assembleia foi distribuido 0,87% sobre o saldo de médio de aplicações</p>
+                    <p>* As sobras podem variar de acordo com o resultado liquido da cooperativa e as decisões dos cooperados na AGO.</p>
+                </div>
+                <div class="container">
+                    <h2>Salvar simulação</h2>
+                    <div class="containercolumn">
+                        <div class="form-column-simple">
+                            <br><label for="descricao">Descrição da Simulação</label><br>
+                            <input type="text" name="descricao">
+                        </div>
+                        <div class="form-column-simple-button">
+                            <button type="submit">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="container">
+        <h2>Lista de Simulações</h2><br>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Descrição simulação</th>
+                    <th>Valor aplicado</th>
+                    <th>CDI</th>
+                    <th>CDI c/ sobras</th>
+                    <th>Dias</th>
+                    <th>Rentabilidade bruta</th>
+                    <th>Saldo total</th>
+                    <th>Ações</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for simulacao in simulacoes_lista %}
+                <tr>
+                    <td>{{ simulacao.descricao }}</td>
+                    <td>{{ simulacao.valor_aplicado }}</td>
+                    <td>{{ simulacao.cdi}}</td>
+                    <td>{{ simulacao.cdi_sobras }}</td>
+                    <td>{{ simulacao.dias }}</td>
+                    <td>{{ simulacao.rentabilidade_bruta }}</td>
+                    <td>{{ simulacao.saldo_total }}</td>
+                    <td>
+                        <a href="">Editar</a>
+
+                    </td>
+                    <td>
+                        <a href="{{ url_for('excluir_simulacao', id=simulacao.id) }}">Excluir</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endblock %}
+</body>
+</html>
