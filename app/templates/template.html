@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <title>Plataforma de Investimentos em Renda Fixa</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ titulo_navegador }}</title>
+        <link rel="stylesheet" href="static/bootstrap.css">
     </head>
     <body>
         <div class="container">
@@ -16,11 +17,6 @@
                     </ul>
                 {% endif %}
             {% endwith %}
-        </div>
-        <div class="page-header">
-            <div class="page-header text-center">
-                <h1>{{ titulo }}</h1>
-            </div>
         </div>
 
         {% block conteudo %} {% endblock %}
