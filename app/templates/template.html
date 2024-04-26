@@ -7,6 +7,17 @@
         <link rel="stylesheet" href="static/bootstrap.css">
     </head>
     <body>
+        <nav class="navbar navbar-light bg-sicoob-verde-escuro">
+            <div class="container-fluid">
+              <a class="navbar-fluid" href="#">
+                <img src="../static/img/img.jpg" alt="" width="40" height="40" class="d-inline-block align-text-center">
+                <h3 style="display: inline; color: aliceblue;">Plataforma de Investimentos</h3>
+              </a>
+              <a class="navbar-fluid" href="#">
+                <h5 style="color: white;">Sair</h5>
+              </a>
+            </div>
+        </nav>
         <div class="container">
             {% with messages = get_flashed_messages() %}
                 {% if messages %} 
@@ -18,8 +29,8 @@
                 {% endif %}
             {% endwith %}
         </div>
-
+        <br>
         {% block conteudo %} {% endblock %}
-
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </body>
 </html>
