@@ -1,14 +1,91 @@
 {% extends "template.html" %}
 {% block conteudo %}
-        <div class="container">
-            <h1>Plataforma de Investimentos em Renda Fixa</h1>
+    <div class="container">
+    <!--<div id="carouselExampleIndicators" class="carousel slide w-50" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="../static/img/img.jpg" class="d-block w-100" alt="../static/img/img.jpg">
+      </div>
+      <div class="carousel-item">
+        <img src="../static/img/img.jpg" class="d-block w-100" alt="../static/img/img.jpg">
+      </div>
+      <div class="carousel-item">
+        <img src="../static/img/img.jpg" class="d-block w-100" alt="../static/img/img.jpg">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button> -->
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div class="col">
+          <a href="{{url_for('simulacao')}}" class="card-link"> 
+          <div class="card h-100">
+            <img src="../static/img/img.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h5 class="card-title">Simulação de investimentos</h5>
+                <p class="card-text">Obtenha a projeção da rentabilidade e sobras previstas para um determinado periodo de aplicação.</p>
+                </div>
+          </div>
+          </a> 
         </div>
-        <div class="container">
-            <a href="{{url_for('modalidades')}}"><button type="submit" class="btn btn-primary btn-salvar">Modalidades</button></a>
+        <div class="col">
+            <a href="{{url_for('simulacao')}}" class="card-link"> 
+                <div class="card h-100">
+                  <img src="../static/img/img.jpg" class="card-img-top" alt="...">
+                      <div class="card-body">
+                      <h5 class="card-title">Politica de Captação</h5>
+                      <p class="card-text">Consulte as <strong>taxas vigentes</strong> para o periodo em todas modalidades de aplicações</p>
+                      </div>
+                </div>
+            </a> 
         </div>
-        <div class="container">
-            <a href="{{url_for('simulacao')}}"><button type="submit" class="btn btn-primary btn-salvar">Simulação</button></a>
+        <div class="col">
+            <a href="{{url_for('simulacao')}}" class="card-link"> 
+                <div class="card h-100">
+                  <img src="../static/img/img.jpg" class="card-img-top" alt="...">
+                      <div class="card-body">
+                      <h5 class="card-title">Manual do Investidor</h5>
+                      <p class="card-text">Entenda sobre os principais <strong>indíces</strong>; IR e IOF; <strong>Guias</strong> operacionais do Sisbr, Intranet e LECOM; <strong>Regras de negócios</strong> de cada modalidade.</p>
+                      </div>
+                </div>
+            </a> 
         </div>
+        <div class="col">
+            <a href="{{url_for('simulacao')}}" class="card-link"> 
+                <div class="card h-100">
+                  <img src="../static/img/img.jpg" class="card-img-top" alt="...">
+                      <div class="card-body">
+                      <h5 class="card-title">Dicas para negociação</h5>
+                      <p class="card-text">Seja um <strong>expert</strong> em investimentos e não perca nenhuma negociação. </p>
+                      </div>
+                </div>
+            </a> 
+        </div>
+        <div class="col">
+            <a href="{{url_for('simulacao')}}" class="card-link"> 
+                <div class="card h-100">
+                  <img src="../static/img/img.jpg" class="card-img-top" alt="...">
+                      <div class="card-body">
+                      <h5 class="card-title">Ferramentas e links</h5>
+                      <p class="card-text">Utilize <strong>conversores de taxas</strong> a.m -> a.a; CDI ao mês; consulte calculadoras do Banco Central.</p>
+                      </div>
+                </div>
+            </a> 
+        </div>
+      </div>
+    </div>
+    </div>
+
     {% endblock %}
     </body>
 </html>
