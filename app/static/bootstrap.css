@@ -229,13 +229,18 @@ sup {
   top: -0.5em;
 }
 
+/* INICIO MODIFICAÇÃO / INCLUSÃO */
 a {
-  color: #0d6efd;
-  text-decoration: underline;
+  /*color: #0d6efd;
+  text-decoration: underline;*/
+  
+  color: inherit; /* Define a cor do texto igual à cor do texto do elemento pai */
+  text-decoration: none; /* Remove o sublinhado */ 
 }
 a:hover {
-  color: #0a58ca;
+  color: #00AE9D;
 }
+/* FIM MODIFICAÇÃO / INCLUSÃO */
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
   color: inherit;
@@ -4452,7 +4457,7 @@ textarea.form-control-lg {
 }
 
 .navbar-dark .navbar-brand {
-  color: #fff;
+  color: #ffffff;
 }
 .navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {
   color: #fff;
@@ -7782,6 +7787,13 @@ textarea.form-control-lg {
 .text-opacity-100 {
   --bs-text-opacity: 1;
 }
+
+/* INICIO MODIFICAÇÃO / INCLUSÃO */
+.bg-sicoob-verde-escuro {
+  --bs-bg-opacity: 1;
+  background-color: #00353E;
+}
+/* FIM MODIFICAÇÃO / INCLUSÃO */
 
 .bg-primary {
   --bs-bg-opacity: 1;
