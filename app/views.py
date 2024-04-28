@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, session, flash, url_for
 from app import app
-from app import models
+from app import models, helpers
 
 modalidade_lista = []
 
