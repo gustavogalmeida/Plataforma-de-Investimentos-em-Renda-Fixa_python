@@ -4,6 +4,26 @@ from app import models, helpers
 
 modalidade_lista = []
 
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/autenticar', methods=['POST', ])
+def autenticar():
+    if request.form['senha'] == '123':
+        session['usuario_logado'] = request.form['usuario']
+        flash('Bem vindo(a), ' + session['usuario_logado'] + '!')
+        return redirect(url_for('index'))
+    else:
+        flash('Por gentileza, verifique suas credênciais.')
+        return redirect(url_for('login'))
+    
+@app.route('/logout')
+def logout():
+    session['usuario_logado'] = None
+    flash('Usuário desconectado com sucesso!')
+    return redirect (url_for('login'))
+
 @app.route('/')
 def index():
     return render_template('index.html'), 200
@@ -90,22 +110,3 @@ def gravar_modalidade():
 
     return redirect(url_for('modalidades'))
 
-@app.route('/login')
-def login():
-    return render_template('login.html')
-
-@app.route('/autenticar', methods=['POST', ])
-def autenticar():
-    if request.form['senha'] == '123':
-        session['usuario_logado'] = request.form['usuario']
-        flash('Bem vindo(a), ' + session['usuario_logado'] + '!')
-        return redirect(url_for('index'))
-    else:
-        flash('Por gentileza, verifique suas credênciais.')
-        return redirect(url_for('login'))
-    
-@app.route('/logout')
-def logout():
-    session['usuario_logado'] = None
-    flash('Usuário desconectado com sucesso!')
-    return redirect (url_for('login'))
