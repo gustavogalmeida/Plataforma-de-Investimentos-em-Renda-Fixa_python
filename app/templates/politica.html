@@ -1,0 +1,42 @@
+{% extends "template.html" %}
+{% block conteudo %}
+
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col-auto">
+            <a href="{{ url_for('index') }}">
+                <button class="btn btn-outline-secondary">
+                    < VOLTAR </button>
+            </a>
+        </div>
+        <div class="col">
+            <h3 class="ml-20 mb-0" style="color: #49479D">Política de Captação</h3>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col-auto">
+            <h5>Politica Assinada pelo Conselho de Administração</h5>
+        </div>
+        <div class="col">
+            <a href="">
+                <button class="btn btn-success ml-20">Download</button>
+            </a>
+        </div>
+    </div>
+
+    <hr>
+
+    <h5>Taxas do Período</h5>
+    <h6>LCA Prefixada</h6>
+    <table>
+    </table>
+</div>
+
+
+{% endblock %}
+</body>
+
+</html>
