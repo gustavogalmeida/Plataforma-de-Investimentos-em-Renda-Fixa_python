@@ -1,32 +1,29 @@
-from flask import render_template, request, redirect, session, flash, url_for
-from app import app
+from flask import render_template, request, redirect, session, url_for
+from app import app, db
 from app import models, helpers
 
 modalidade_lista = []
 
 @app.route('/login')
 def login():
-    return render_template('login.html')
+    return render_template('login.html', titulo_navegador="Login - Plataforma de Investimentos")
 
 @app.route('/autenticar', methods=['POST', ])
 def autenticar():
     if request.form['senha'] == '123':
         session['usuario_logado'] = request.form['usuario']
-        flash('Bem vindo(a), ' + session['usuario_logado'] + '!')
         return redirect(url_for('index'))
     else:
-        flash('Por gentileza, verifique suas credênciais.')
         return redirect(url_for('login'))
     
 @app.route('/logout')
 def logout():
     session['usuario_logado'] = None
-    flash('Usuário desconectado com sucesso!')
     return redirect (url_for('login'))
 
 @app.route('/')
 def index():
-    return render_template('index.html'), 200
+    return render_template('index.html', titulo_navegador="Plataforma de Investimentos"), 200
 
 @app.route('/simulacao', methods=['POST', 'GET'])
 def simulacao():
@@ -53,8 +50,9 @@ def simulacao():
                             valor_sobras=valor_sobras,
                             rentabilidade_bruta_valor=rentabilidade_bruta_valor,
                             saldo_total=saldo_total,
-                            rentabilidade_bruta_porcentagem_aa=rentabilidade_bruta_porcentagem_aa) 
-    return render_template('simulacao.html', simulacoes_lista=simulacoes_lista) 
+                            rentabilidade_bruta_porcentagem_aa=rentabilidade_bruta_porcentagem_aa,
+                            titulo_navegador="Simulação - Plataforma de Investimentos") 
+    return render_template('simulacao.html', simulacoes_lista=simulacoes_lista, titulo_navegador="Plataforma de Investimentos") 
 
 @app.route('/salvar_simulacao', methods=['POST', ])
 def salvar_simulacao():
@@ -79,15 +77,9 @@ def excluir_simulacao(id):
     db.session.commit()
     return redirect(url_for('simulacao'))
 
-@app.route('/editar_simulacao')
-def editar():
-    ## TODO: implementar rota de edição (será necessário outra pag)
-    pass
-
 @app.route('/modalidades')
 def modalidades():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        flash('Você precisa estar conectado para acessar este recurso!')
         return redirect (url_for('login'))       
     return render_template('modalidades.html',
                            modalidades_lista = modalidade_lista)
@@ -110,3 +102,18 @@ def gravar_modalidade():
 
     return redirect(url_for('modalidades'))
 
+@app.route('/politica')
+def politica():
+    return render_template('politica.html', titulo_navegador="Politica - Plataforma de Investimentos")
+
+@app.route('/manual')
+def manual():
+    return render_template('manual.html', titulo_navegador="Manual - Plataforma de Investimentos")
+
+@app.route('/dicas')
+def dicas():
+    return render_template('/dicas.html', titulo_navegador="Dicas - Plataforma de Investimentos")
+
+@app.route('/ferramentas')
+def ferramentas():
+    return render_template('/ferramentas.html', titulo_navegador="Ferramentas - Plataforma de Investimentos")
