@@ -14,7 +14,7 @@
     <div>
         <div class="row align-items-center">
             <div class="col-8">
-                <img src="../static/img/gostei 1.jpg" style="width: 100%; height: 100%;" alt="">
+                <img src="../static/img/login.jpg" style="width: 100%; height: 100%;" alt="">
             </div>
             <div class="col-4">
                 <div class="container text-center">
@@ -24,11 +24,11 @@
                 <div class="container">
                 <form action="{{ url_for('autenticar') }}" method="POST">
                     <div class="form-floating mb-3">
-                        <input type="text" name="usuario" class="form-control" required>
+                        <input type="text" name="usuario" class="form-control" placeholder="" required>
                         <label name="usuario" for="usuario">Usuário</label>
                     </div>
                     <div class="form-floating">
-                        <input type="password" name="senha" class="form-control" required>
+                        <input type="password" name="senha" class="form-control" placeholder="" required>
                         <label for="senha">Senha</label><br>
                     </div>
                     <button type="submit" class="btn btn-success">Entrar</button>
