@@ -22,23 +22,25 @@ cursor.execute("CREATE DATABASE `db_plataforma_investimentos`;")
 
 cursor.execute("USE `db_plataforma_investimentos`;")
 
-# criando tabelas
+# criando dicionario que armazena as tabelas
 TABLES = {}
-TABLES['modalidades'] = ('''
-      CREATE TABLE `modalidades` (
-      `id` int NOT NULL AUTO_INCREMENT,
-      `nome` varchar(30) NOT NULL,
-      `tipo` varchar(30) NOT NULL,
-      `resgate_automatico` varchar(40) NOT NULL,
-      `prazo_minimo` int NOT NULL,
-      `prazo_maximo` int NOT NULL,
-      PRIMARY KEY (`id`)
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;''')
+TABLES['simulacao'] = ('''
+        CREATE TABLE `simulacao`(
+            `id` int(11) NOT NULL AUTO_INCREMENT,
+            `descricao` varchar(30) not null,
+            `valor_aplicado` float not null,
+            `cdi` float not null,
+            `cdi_sobras` float not null,
+            `dias` int not null,
+            `rentabilidade_bruta` float not null,
+            `saldo_total` float not null,
+            PRIMARY KEY (`id`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;''')
 
 for tabela_nome in TABLES:
       tabela_sql = TABLES[tabela_nome]
       try:
-            print('Criando tabela {}:'.format(tabela_nome), end=' ')
+            print('Criando tablea {}:'.format(tabela_nome), end=' ')
             cursor.execute(tabela_sql)
       except mysql.connector.Error as err:
             if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
@@ -48,21 +50,7 @@ for tabela_nome in TABLES:
       else:
             print('OK')
 
-# inserindo modalidades
-modalidades_sql = 'INSERT INTO modalidades (nome, tipo, resgate_automatico, prazo_minimo, prazo_maximo) VALUES (%s, %s, %s, %s, %s)'
-modalidades = [
-      ("LCA DI", "LCA", "Não permitido", 276, 730),
-      ("RDC Flexível", "RDC", "Permitido", 0, 5000)
-]
-cursor.executemany(modalidades_sql, modalidades)
 
-cursor.execute('select * from db_plataforma_investimentos.modalidades')
-print(' -------------  Modalidades:  -------------')
-for modalidade in cursor.fetchall():
-    print(modalidade[1])
-
-
-# commitando se não nada tem efeito
 conn.commit()
 
 cursor.close()
