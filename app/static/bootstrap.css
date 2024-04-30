@@ -2232,7 +2232,9 @@ progress {
   opacity: 1;
 }
 .form-control:disabled, .form-control[readonly] {
-  background-color: #e9ecef;
+  /* MODIFICADO
+   background-color: #e9ecef; */
+  background-color: rgb(245, 245, 245);
   opacity: 1;
 }
 .form-control::-webkit-file-upload-button {
@@ -2751,10 +2753,12 @@ textarea.form-control-lg {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
+  /* color: #212529; */
+  color: #00353E;
   text-align: center;
   white-space: nowrap;
-  background-color: #e9ecef;
+  /* background-color: #e9ecef; */
+  background-color: rgb(245, 245, 245);
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
 }
