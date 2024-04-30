@@ -27,147 +27,61 @@
                         <input type="text" name="valor" class="form-control">
                     </div>
 
-                    <label for="dias" style="font-size: small; color: #00353E;">Periodo aplicação</label>
+                    <label for="dias" style="font-size: small; color: #00353E;">Quantidade de dias simulados</label>
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" name="dias">
-                        <span class="input-group-text">Dias</span>
+                        <span class="input-group-text">dias</span>
                     </div>
 
-                    <label for="cdi" style="font-size: small; color: #00353E;">Rentabilidade taxa</label>
+                    <label for="cdi" style="font-size: small; color: #00353E;">Rentabilidade taxa  <i type="Icons" class="bi bi-question-circle" style="color: #00AE9D;" id="meu-botao" data-bs-toggle="popover" title="Taxa de Rentabilidade" data-bs-trigger="hover focus" data-bs-content="Para aplicações de renda fixa pós-fixadas a aplicação acompanha um  indice, nesse caso é utilizado a porcentagem do CDI, sendo comum como benchmark para investimentos em renda fixa no Brasil."></i></label>
                     <div class="input-group mb-3">
                         <span class="input-group-text">%</span>
                         <input type="text" class="form-control" name="cdi">
                         <span class="input-group-text">CDI</span>
                     </div>
+                    
+        </div>
+
+        <div class="col">
+            <label for="selic-meta" style="font-size: small; color: #00353E;">SELIC Meta  <i type="Icons" class="bi bi-question-circle" style="color: #00AE9D;" data-bs-toggle="popover" title="SELIC Meta" data-bs-trigger="hover focus" data-bs-content="A SELIC Meta é a taxa básica de juros definida pelo Banco Central do Brasil a cada 45 dias, usada como referência para as operações financeiras no país."></i></label>
+            <div class="input-group mb-3">
+                <span class="input-group-text">%</span>
+                <input type="text" value="10,75" class="form-control" readonly>
+                <span class="input-group-text">a.a</span>
+            </div>
+
+            <label for="cdi-meta" style="font-size: small; color: #00353E;">CDI Meta  <i type="Icons" class="bi bi-question-circle" style="color: #00AE9D;" data-bs-toggle="popover" title="CDI Meta" data-bs-trigger="hover focus" data-bs-content="O CDI Meta é a taxa média das operações entre bancos e é próxima à SELIC Meta. Ele pode ser diferente a cada dia, mas para simulações é utilizado: CDI = SELIC - 0,10."></i></label>
+            <div class="input-group mb-3">
+                <span class="input-group-text">%</span>
+                <input type="text" value="10,65" class="form-control" readonly>
+                <span class="input-group-text">a.a</span>
+            </div>
+
+            <label for="sobras" style="font-size: small; color: #00353E;">Sobras por saldo médio  <i type="Icons" class="bi bi-question-circle" style="color: #00AE9D;" data-bs-toggle="popover" title="Sobras por saldo médio" data-bs-trigger="hover focus" data-bs-content="As sobras pagas após a assembleia consideram o saldo médio de investimentos do cooperado ultimo exercicio de 12 meses e multiplica pela taxa distribuída conforme resultado liquido. *O valor utilizado é referente a ultima distribuição."></i></label>
+            <div class="input-group mb-3">
+                <span class="input-group-text">%</span>
+                <input type="text" value="0,87" class="form-control" readonly>
+                <span class="input-group-text">no exercício</span>
+            </div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                  // Seleciona todos os elementos com data-bs-toggle="popover"
+                  var popovers = document.querySelectorAll('[data-bs-toggle="popover"]');
+                  
+                  // Inicializa cada popover
+                  popovers.forEach(function(popover) {
+                    new bootstrap.Popover(popover);
+                  });
+                });
+            </script>   
+        </div>
+        <div>
+            <button style="background-color: #49479D;" class="btn btn-primary" type="submit">Calcular</button>
         </div>
         
-        <div class="col">
-            <div class="form-floating mb-3">
-                <input type="text" value="10,75% a.a" class="form-control" id="floatingInput" disabled>
-                <label for="selic-meta">SELIC Meta</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" value="10,65% a.a" disabled>
-                <label for="cdi-meta">CDI Meta</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="text" value="0,87%" disabled class="form-control" id="floatingInput">
-                <label for="sobras">Sobras por saldo médio</label>
-            </div>
-        </div>
-        <button class="btn btn-primary" type="submit">Calcular</button>
         </fieldset>
         </form>
     </div>
-</div>
-<div class="container">
-    <form action="/salvar_simulacao" method="post">
-        <fieldset>
-            <h2>Simulação</h2>
-            <div class="containercolumn">
-                <div class="form-column">
-                    <h3>Dados aplicação</h3>
-
-                    <label for="valor_aplicado">Valor Aplicado</label><br>
-                    <input type="text" name="valor_aplicado" placeholder="R$ 0,00" value="{{ valor_aplicado }}"
-                        readonly>
-
-                    <label for="dias">Dias aplicados</label><br>
-                    <input type="text" name="dias" placeholder="0" value="{{ dias }}" readonly>
-                </div>
-                <div class="form-column">
-                    <h3>Rentabilidade</h3>
-                    <label for="rentabilidade_paga">Rentabilidade aplicação</label><br>
-                    <input type="text" name="rentabilidade_paga" placeholder="R$ 0,00" value="{{ rentabilidade_paga }}"
-                        readonly>
-
-                    <label for="valor_sobras">Sobras previstas</label><br>
-                    <input type="text" name="valor_sobras" placeholder="R$ 0,00" value="{{ valor_sobras }}" readonly>
-
-                    <label for="rentabilidade_bruta_valor">Rentabilidade + Sobras</label><br>
-                    <input type="text" name="rentabilidade_bruta_valor" placeholder="R$ 0,00"
-                        value="{{ rentabilidade_bruta_valor }}" readonly>
-                </div>
-            </div>
-            <div>
-                <div class="containercolumn">
-                    <div class="form-column">
-                        <h3>Resultado</h3>
-                        <label for="saldo_total">Saldo total</label><br>
-                        <input type="text" name="saldo_total" placeholder="R$ 0,00" value="{{ saldo_total }}" readonly>
-
-                        <label for="rentabilidade_bruta_porcentagem_aa">Rentabilidade Bruta no Periodo</label><br>
-                        <input type="text" name="rentabilidade_bruta_porcentagem_aa" placeholder="%"
-                            value="{{ rentabilidade_bruta_porcentagem_aa }}" readonly>
-                    </div>
-                    <div class="form-column">
-                        <h3>CDI</h3>
-
-                        <label for="cdi">CDI aplicação</label><br>
-                        <input type="text" name="cdi" id="cdi" placeholder="%" value="{{ cdi }}" readonly>
-
-                        <label for="cdi_considerando_sobras">CDI bruto considerando sobras</label><br>
-                        <input type="text" placeholder="%" name="cdi_considerando_sobras"
-                            value="{{ cdi_considerando_sobras }}" readonly>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <p>* Os investimentos em renda fixa pós-fixada atrelada à taxa SELIC estão sujeitos a
-                    oscilações na taxa básica de juros, o que pode resultar em divergências no valor final.</p>
-                <p>* As sobras consideram o saldo médio de investimentos no ultimo exercicio de 12 meses, o calculo foi
-                    feito considerando que o saldo médio no exercicio foi igual ao valor aplicado.
-                    Na ultima assembleia foi distribuido 0,87% sobre o saldo de médio de aplicações</p>
-                <p>* As sobras podem variar de acordo com o resultado liquido da cooperativa e as decisões dos
-                    cooperados na AGO.</p>
-            </div>
-            <div class="container">
-                <h2>Salvar simulação</h2>
-                <div class="containercolumn">
-                    <div class="form-column-simple">
-                        <br><label for="descricao">Descrição da Simulação</label><br>
-                        <input type="text" name="descricao">
-                    </div>
-                    <div class="form-column-simple-button">
-                        <button type="submit">Salvar</button>
-                    </div>
-                </div>
-            </div>
-        </fieldset>
-    </form>
-</div>
-<div class="container">
-    <h2>Lista de Simulações</h2><br>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Descrição simulação</th>
-                <th>Valor aplicado</th>
-                <th>CDI</th>
-                <th>CDI c/ sobras</th>
-                <th>Dias</th>
-                <th>Rentabilidade bruta</th>
-                <th>Saldo total</th>
-                <th>#</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for simulacao in simulacoes_lista %}
-            <tr>
-                <td>{{ simulacao.descricao }}</td>
-                <td>{{ simulacao.valor_aplicado }}</td>
-                <td>{{ simulacao.cdi}}</td>
-                <td>{{ simulacao.cdi_sobras }}</td>
-                <td>{{ simulacao.dias }}</td>
-                <td>{{ simulacao.rentabilidade_bruta }}</td>
-                <td>{{ simulacao.saldo_total }}</td>
-                <td>
-                    <a href="{{ url_for('excluir_simulacao', id=simulacao.id) }}">Excluir</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
 </div>
 {% endblock %}
 </body>
