@@ -2,8 +2,6 @@ from flask import render_template, request, redirect, session, url_for
 from app import app, db
 from app import models, helpers
 
-modalidade_lista = []
-
 @app.route('/login')
 def login():
     return render_template('login.html', titulo_navegador="Login - Plataforma de Investimentos")
@@ -77,34 +75,10 @@ def excluir_simulacao(id):
     db.session.commit()
     return redirect(url_for('simulacao'))
 
-@app.route('/modalidades')
-def modalidades():
-    if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        return redirect (url_for('login'))       
-    return render_template('modalidades.html',
-                           modalidades_lista = modalidade_lista)
-
-@app.route('/gravar_modalidade', methods=['POST',])
-def gravar_modalidade():
-    descricao = request.form['descricao']
-    tipo = request.form['tipo_group']
-    if 'permite_resgate_automatico' in request.form:
-        resgate = 'Permite'
-    else:
-        resgate = "Não permitido"
-    prazo_minimo = request.form['prazo_minimo']
-    prazo_maximo = request.form['prazo_maximo']
-
-    modalidade = models.Modalidades(nome=descricao, tipo=tipo, resgate_automatico=resgate,
-                                    prazo_minimo=prazo_minimo, prazo_maximo=prazo_maximo)
-    
-    modalidade_lista.append(modalidade)
-
-    return redirect(url_for('modalidades'))
-
 @app.route('/politica')
 def politica():
-    return render_template('politica.html', titulo_navegador="Politica - Plataforma de Investimentos")
+    lca_pre_lista = models.Faixas_lca_pre.query.order_by(models.Faixas_lca_pre.id)
+    return render_template('politica.html', titulo_navegador="Politica - Plataforma de Investimentos", lca_pre_lista=lca_pre_lista)
 
 @app.route('/manual')
 def manual():
