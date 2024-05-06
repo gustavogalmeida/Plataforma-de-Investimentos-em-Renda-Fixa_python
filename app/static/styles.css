@@ -1,7 +1,51 @@
 body {
-    background-color: aliceblue;
+    background-color: ghostwhite;
 }
 
 .border-sicoob {
     border-color: #00ae9d !important;
+}
+
+td {
+  font-size: small;  
+}
+
+th {
+    text-align: center;
+    font-weight: normal;
+    color: #003641;
+}
+
+h2 {
+    color: #003641;
+    text-align: left;
+    font-size: larger;
+}
+
+h6 {
+    color: #49479D;
+}
+
+h5 {
+    color: #003641;
+    text-align: center;
+    font-size: x-large;
+}
+
+.form-control:disabled, .form-control[readonly] {
+    background-color: rgb(245, 245, 245);
+}
+
+.input-group-text {
+    /* color: #212529; */
+    color: #00353E;
+    background-color: rgb(245, 245, 245);
+}
+
+a {
+    color: inherit; /* Define a cor do texto igual à cor do texto do elemento pai */
+    text-decoration: none; /* Remove o sublinhado */ 
+}
+a:hover {
+    color: #00AE9D;
 }
