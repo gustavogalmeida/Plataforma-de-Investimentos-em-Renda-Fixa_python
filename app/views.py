@@ -77,8 +77,23 @@ def excluir_simulacao(id):
 
 @app.route('/politica')
 def politica():
-    lca_pre_lista = models.Faixas_lca_pre.query.order_by(models.Faixas_lca_pre.id)
-    return render_template('politica.html', titulo_navegador="Politica - Plataforma de Investimentos", lca_pre_lista=lca_pre_lista)
+    politica_lca_pre_276 = models.Politica_lca_pre_276.query.order_by(models.Politica_lca_pre_276.id)
+    politica_lca_pre_360 = models.Politica_lca_pre_360.query.order_by(models.Politica_lca_pre_360.id)
+    politica_rdc_pre_181 = models.Politica_rdc_pre_181.query.order_by(models.Politica_rdc_pre_181.id)
+    politica_rdc_pre_361 = models.Politica_rdc_pre_361.query.order_by(models.Politica_rdc_pre_361.id)
+    politica_rdc_flexivel = models.Politica_rdc_flexivel.query.order_by(models.Politica_rdc_flexivel.id)
+    politica_lca_pos_276 = models.Politica_lca_pos_276.query.order_by(models.Politica_lca_pos_276.id)
+    politica_lca_pos_360 = models.Politica_lca_pos_360.query.order_by(models.Politica_lca_pos_360.id)
+    politica_lca_pos_730 = models.Politica_lca_pos_730.query.order_by(models.Politica_lca_pos_730.id)
+    return render_template('politica.html', titulo_navegador="Politica - Plataforma de Investimentos", 
+                           politica_lca_pre_276=politica_lca_pre_276,
+                           politica_lca_pre_360=politica_lca_pre_360,
+                           politica_rdc_pre_181=politica_rdc_pre_181,
+                           politica_rdc_pre_361=politica_rdc_pre_361,
+                           politica_rdc_flexivel=politica_rdc_flexivel,
+                           politica_lca_pos_276=politica_lca_pos_276,
+                           politica_lca_pos_360=politica_lca_pos_360,
+                           politica_lca_pos_730=politica_lca_pos_730)
 
 @app.route('/manual')
 def manual():
