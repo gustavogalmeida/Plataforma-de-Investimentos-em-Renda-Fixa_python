@@ -5,8 +5,7 @@
     <div class="row align-items-center">
         <div class="col-auto">
             <a href="{{ url_for('index') }}">
-                <button class="btn btn-outline-secondary">
-                    < VOLTAR </button>
+                <button class="btn btn-outline-secondary"><i class="bi bi-house"></i> Início </button>
             </a>
         </div>
         <div class="col">
@@ -15,6 +14,9 @@
     </div>
 </div>
 <hr>
+
+<h5>Arquivos</h5>
+
 <div class="container">
     <div class="row align-items-center">
         <div class="col-auto">
@@ -23,50 +25,255 @@
             </a>
         </div>
         <div class="col ">
-            <h5>Politica assinada pelo Conselho de Administração</h5>
+            <p style="margin-top: 15px;">Politica assinada pelo Conselho de Administração</p>
         </div>
     </div>
-    <br>
     <div class="row align-items-center">
         <div class="col-auto">
             <a href="">
                 <button class="btn btn-success ml-20"><i class="bi bi-download"></i> </button>
             </a>
         </div>
-        <div class="col ">
-            <h5>Politica para impressão</h5>
+        <div class="col">
+            <p style="margin-top: 15px;">Politica para impressão</p>
+        </div>
+    </div>
+
+    <hr>
+    <br>
+    <h4 class="text-center" style="color: #003641">Taxas Prefixadas</h4>
+    <br>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-4 row-cols-xxl-4">
+        <div class="col">
+            <h6>
+                LCA Pré 9 meses    
+                <i type="Icons" class="bi bi-question-circle" style="color: #00AE9D;" data-bs-toggle="popover" title="Nome no Sisbr" data-bs-trigger="hover focus" data-bs-content="LCA Pre"></i>
+            </h6>
+            <p style="font-size: small;"><strong>Carência:</strong> 276 dias.<br><strong>Vencimento:</strong> 370 dias.</p>
+            <table class="table table-striped table-bordered border-sicoob">
+                <thead>
+                    <tr>
+                        <th>de</th>
+                        <th>até</th>
+                        <th>%</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for faixa in politica_lca_pre_276 %}
+                    <tr>
+                        <td>{{ faixa.valor_minimo }}</td>
+                        <td>{{ faixa.valor_maximo }}</td>
+                        <td>{{ faixa.taxa }}% a.a</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <h6>
+                LCA Pré 1 ano       
+                <i type="Icons" class="bi bi-question-circle" style="color: #00AE9D;" data-bs-toggle="popover" title="Nome no Sisbr" data-bs-trigger="hover focus" data-bs-content="LCA Pre"></i>
+            </h6>
+            <p style="font-size: small;"><strong>Carência:</strong> 360 dias.<br><strong>Vencimento:</strong> 370 dias.</p>
+            <table class="table table-striped table-bordered border-sicoob">
+                <thead>
+                    <tr>
+                        <th>de</th>
+                        <th>até</th>
+                        <th>%</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for faixa in politica_lca_pre_360 %}
+                    <tr>
+                        <td>{{ faixa.valor_minimo }}</td>
+                        <td>{{ faixa.valor_maximo }}</td>
+                        <td>{{ faixa.taxa }}% a.a</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <h6>
+                RDC Pré 6 meses       
+                <i type="Icons" class="bi bi-question-circle" style="color: #00AE9D;" data-bs-toggle="popover" title="Nome no Sisbr" data-bs-trigger="hover focus" data-bs-content="RDC Fidelidade Pre 181"></i>
+            </h6>
+            <p style="font-size: small;"><strong>Carência:</strong> 181 dias.<br><strong>Vencimento:</strong> 370 dias.</p>
+            <table class="table table-striped table-bordered border-sicoob">
+                <thead>
+                    <tr>
+                        <th>de</th>
+                        <th>até</th>
+                        <th>%</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for faixa in politica_rdc_pre_181 %}
+                    <tr>
+                        <td>{{ faixa.valor_minimo }}</td>
+                        <td>{{ faixa.valor_maximo }}</td>
+                        <td>{{ faixa.taxa }}% a.a</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col"> 
+            <h6>
+                RDC Pré 1 ano      
+                <i type="Icons" class="bi bi-question-circle" style="color: #00AE9D;" data-bs-toggle="popover" title="Nome no Sisbr" data-bs-trigger="hover focus" data-bs-content="RDC Fidelidade Pre 361"></i>
+            </h6>
+            <p style="font-size: small;"><strong>Carência:</strong> 360 dias.<br><strong>Vencimento:</strong> 370 dias.</p>
+            <table class="table table-striped table-bordered border-sicoob">
+                <thead>
+                    <tr>
+                        <th>de</th>
+                        <th>até</th>
+                        <th>%</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for faixa in politica_rdc_pre_361 %}
+                    <tr>
+                        <td>{{ faixa.valor_minimo }}</td>
+                        <td>{{ faixa.valor_maximo }}</td>
+                        <td>{{ faixa.taxa }}% a.a</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 
     <hr>
 
-    <h5 class="text-center">LCA Prefixada</h5>
-    
-    
-    <table class="table table-striped table-bordered border-primary">
-        <thead>
-            <tr>
-                <th>de</th>
-                <th>até</th>
-                <th>Taxa</th>
-                <th>dias liquidez</th>
-                <th>dias vencimento</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for lca_pre in lca_pre_lista %}
-            <tr>
-                <th>R$ {{ lca_pre.valor_minimo }}</th>
-                <th>R$ {{ lca_pre.valor_maximo }}</th>
-                <th>{{ lca_pre.taxa }}% a.a</th>
-                <th>{{ lca_pre.dias_liquidez }} dias</th>
-                <th>{{ lca_pre.dias_vencimento }} dias</th>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <br>
+    <h4 class="text-center" style="color: #003641">Taxas Progressivas</h4>
+    <br>
+
+    <hr>
+
+    <br>
+    <h4 class="text-center" style="color: #003641">Taxas Pós fixadas</h4>
+    <br>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-4 row-cols-xxl-4">
+        <div class="col">
+            <h6>
+                RDC Liquidez diária      
+                <i type="Icons" class="bi bi-question-circle" style="color: #00AE9D;" data-bs-toggle="popover" title="Nome no Sisbr" data-bs-trigger="hover focus" data-bs-content="RDC Flexível"></i>
+            </h6>
+            <p style="font-size: small;"><strong>Carência:</strong> 0 dias.<br><strong>Vencimento:</strong> 5000 dias.</p>
+            <table class="table table-striped table-bordered border-sicoob">
+                <thead>
+                    <tr>
+                        <th>de</th>
+                        <th>até</th>
+                        <th>%</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for faixa in politica_rdc_flexivel %}
+                    <tr>
+                        <td>{{ faixa.valor_minimo }}</td>
+                        <td>{{ faixa.valor_maximo }}</td>
+                        <td>{{ faixa.taxa }}% a.a</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <h6>
+                LCA 9 meses      
+                <i type="Icons" class="bi bi-question-circle" style="color: #00AE9D;" data-bs-toggle="popover" title="Nome no Sisbr" data-bs-trigger="hover focus" data-bs-content="LCA DI"></i>
+            </h6>
+            <p style="font-size: small;"><strong>Carência:</strong> 276 dias.<br><strong>Vencimento:</strong> 730 dias.</p>
+            <table class="table table-striped table-bordered border-sicoob">
+                <thead>
+                    <tr>
+                        <th>de</th>
+                        <th>até</th>
+                        <th>%</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for faixa in politica_lca_pos_276 %}
+                    <tr>
+                        <td>{{ faixa.valor_minimo }}</td>
+                        <td>{{ faixa.valor_maximo }}</td>
+                        <td>{{ faixa.taxa }}% a.a</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <h6>
+                LCA 1 ano      
+                <i type="Icons" class="bi bi-question-circle" style="color: #00AE9D;" data-bs-toggle="popover" title="Nome no Sisbr" data-bs-trigger="hover focus" data-bs-content="LCA DI"></i>
+            </h6>
+            <p style="font-size: small;"><strong>Carência:</strong> 360 dias.<br><strong>Vencimento:</strong> 730 dias.</p>
+            <table class="table table-striped table-bordered border-sicoob">
+                <thead>
+                    <tr>
+                        <th>de</th>
+                        <th>até</th>
+                        <th>%</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for faixa in politica_lca_pos_360 %}
+                    <tr>
+                        <td>{{ faixa.valor_minimo }}</td>
+                        <td>{{ faixa.valor_maximo }}</td>
+                        <td>{{ faixa.taxa }}% a.a</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <h6>
+                LCA 2 anos      
+                <i type="Icons" class="bi bi-question-circle" style="color: #00AE9D;" data-bs-toggle="popover" title="Nome no Sisbr" data-bs-trigger="hover focus" data-bs-content="LCA DI"></i>
+            </h6>
+            <p style="font-size: small;"><strong>Carência:</strong> 730 dias.<br><strong>Vencimento:</strong> 730 dias.</p>
+            <table class="table table-striped table-bordered border-sicoob">
+                <thead>
+                    <tr>
+                        <th>de</th>
+                        <th>até</th>
+                        <th>%</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for faixa in politica_lca_pos_730 %}
+                    <tr>
+                        <td>{{ faixa.valor_minimo }}</td>
+                        <td>{{ faixa.valor_maximo }}</td>
+                        <td>{{ faixa.taxa }}% a.a</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          // Seleciona todos os elementos com data-bs-toggle="popover"
+          var popovers = document.querySelectorAll('[data-bs-toggle="popover"]');
+          
+          // Inicializa cada popover
+          popovers.forEach(function(popover) {
+            new bootstrap.Popover(popover);
+          });
+        });
+    </script>  
+</div>
 
 {% endblock %}
 </body>
