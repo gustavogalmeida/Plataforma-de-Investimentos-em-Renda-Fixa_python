@@ -33,8 +33,8 @@ TABLES['simulacao'] = ('''
             PRIMARY KEY (`id`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;''')
 
-TABLES['faixas_lca_pre'] = ('''
-        CREATE TABLE `faixas_lca_pre`(
+TABLES['politica_lca_pre_276'] = ('''
+        CREATE TABLE `politica_lca_pre_276`(
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `valor_minimo` decimal (10, 2) not null,
             `valor_maximo` decimal (10, 2) not null,
@@ -44,8 +44,8 @@ TABLES['faixas_lca_pre'] = ('''
             PRIMARY KEY (`id`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;''')
 
-TABLES['faixas_lca_di'] = ('''
-        CREATE TABLE `faixas_lca_di`(
+TABLES['politica_lca_pre_360'] = ('''
+        CREATE TABLE `politica_lca_pre_360`(
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `valor_minimo` decimal (10, 2) not null,
             `valor_maximo` decimal (10, 2) not null,
@@ -55,8 +55,8 @@ TABLES['faixas_lca_di'] = ('''
             PRIMARY KEY (`id`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;''')
 
-TABLES['faixas_rdc_flexivel'] = ('''
-        CREATE TABLE `faixas_rdc_flexivel`(
+TABLES['politica_rdc_pre_181'] = ('''
+        CREATE TABLE `politica_rdc_pre_181`(
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `valor_minimo` decimal (10, 2) not null,
             `valor_maximo` decimal (10, 2) not null,
@@ -66,8 +66,8 @@ TABLES['faixas_rdc_flexivel'] = ('''
             PRIMARY KEY (`id`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;''')
 
-TABLES['faixas_rdc_pre'] = ('''
-        CREATE TABLE `faixas_rdc_pre`(
+TABLES['politica_rdc_pre_361'] = ('''
+        CREATE TABLE `politica_rdc_pre_361`(
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `valor_minimo` decimal (10, 2) not null,
             `valor_maximo` decimal (10, 2) not null,
@@ -77,8 +77,8 @@ TABLES['faixas_rdc_pre'] = ('''
             PRIMARY KEY (`id`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;''')
 
-TABLES['faixas_rdc_181'] = ('''
-        CREATE TABLE `faixas_rdc_181`(
+TABLES['politica_rdc_flexivel'] = ('''
+        CREATE TABLE `politica_rdc_flexivel`(
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `valor_minimo` decimal (10, 2) not null,
             `valor_maximo` decimal (10, 2) not null,
@@ -88,8 +88,8 @@ TABLES['faixas_rdc_181'] = ('''
             PRIMARY KEY (`id`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;''')
 
-TABLES['faixas_rdc_361'] = ('''
-        CREATE TABLE `faixas_rdc_361`(
+TABLES['politica_lca_pos_276'] = ('''
+        CREATE TABLE `politica_lca_pos_276`(
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `valor_minimo` decimal (10, 2) not null,
             `valor_maximo` decimal (10, 2) not null,
@@ -99,8 +99,8 @@ TABLES['faixas_rdc_361'] = ('''
             PRIMARY KEY (`id`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;''')
 
-TABLES['faixas_rdc_721'] = ('''
-        CREATE TABLE `faixas_rdc_721`(
+TABLES['politica_lca_pos_360'] = ('''
+        CREATE TABLE `politica_lca_pos_360`(
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `valor_minimo` decimal (10, 2) not null,
             `valor_maximo` decimal (10, 2) not null,
@@ -109,6 +109,18 @@ TABLES['faixas_rdc_721'] = ('''
             `dias_vencimento` int not null,
             PRIMARY KEY (`id`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;''')
+
+TABLES['politica_lca_pos_730'] = ('''
+        CREATE TABLE `politica_lca_pos_730`(
+            `id` int(11) NOT NULL AUTO_INCREMENT,
+            `valor_minimo` decimal (10, 2) not null,
+            `valor_maximo` decimal (10, 2) not null,
+            `taxa` decimal (10, 2) not null,
+            `dias_liquidez` int not null,
+            `dias_vencimento` int not null,
+            PRIMARY KEY (`id`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;''')
+
 
 for tabela_nome in TABLES:
       tabela_sql = TABLES[tabela_nome]
