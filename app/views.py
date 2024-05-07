@@ -23,34 +23,25 @@ def logout():
 def index():
     return render_template('index.html', titulo_navegador="Plataforma de Investimentos"), 200
 
-@app.route('/simulacao', methods=['POST', 'GET'])
-def simulacao():
-    simulacoes_lista = models.Simulacao.query.order_by(models.Simulacao.id)
+@app.route('/simulacao_lca_pos', methods=['POST', 'GET'])
+def simulacao_lca_pos(): 
+    return render_template('simulacao_lca_pos.html', titulo_navegador="Simulação LCA Pós- Plataforma de Investimentos") 
 
-    if request.method=='POST':
-        valor_aplicado = request.form['valor']
-        dias = request.form['dias']
-        cdi_pago = request.form['cdi']
+@app.route('/simulacao_lca_pre', methods=['POST', 'GET'])
+def simulacao_lca_pre(): 
+    return render_template('simulacao_lca_pre.html', titulo_navegador="Simulação LCA Pré- Plataforma de Investimentos") 
 
-        cdi_com_sobras = helpers.calcula_cdi_considerando_sobras(cdi_pago)
-        rentabilidade_valor = helpers.calcula_rentabilidade_periodo_valor(dias, valor_aplicado, cdi_pago)
-        valor_sobras = helpers.calcula_valor_sobras(valor_aplicado)
-        rentabilidade_bruta_valor = helpers.calcula_rentabilidade_bruta_valor(valor_sobras, rentabilidade_valor)
-        rentabilidade_bruta_porcentagem_aa = helpers.calcula_rentabilidade_bruta_porcentagem_aa(rentabilidade_bruta_valor, valor_aplicado)
-        saldo_total = helpers.calcula_saldo_total(rentabilidade_bruta_valor, valor_aplicado)
-        return render_template('simulacao.html', 
-                            simulacoes_lista=simulacoes_lista,
-                            valor_aplicado=valor_aplicado,
-                            dias=dias,
-                            rentabilidade_paga=rentabilidade_valor, 
-                            cdi=cdi_pago,
-                            cdi_considerando_sobras=cdi_com_sobras,
-                            valor_sobras=valor_sobras,
-                            rentabilidade_bruta_valor=rentabilidade_bruta_valor,
-                            saldo_total=saldo_total,
-                            rentabilidade_bruta_porcentagem_aa=rentabilidade_bruta_porcentagem_aa,
-                            titulo_navegador="Simulação - Plataforma de Investimentos") 
-    return render_template('simulacao.html', simulacoes_lista=simulacoes_lista, titulo_navegador="Plataforma de Investimentos") 
+@app.route('/simulacao_rdc_pos', methods=['POST', 'GET'])
+def simulacao_rdc_pos(): 
+    return render_template('simulacao_rdc_pos.html', titulo_navegador="Simulação RDC Pós- Plataforma de Investimentos") 
+
+@app.route('/simulacao_rdc_pre', methods=['POST', 'GET'])
+def simulacao_rdc_pre(): 
+    return render_template('simulacao_rdc_pre.html', titulo_navegador="Simulação RDC Pré - Plataforma de Investimentos") 
+
+@app.route('/simulacao_rdc_progressivo', methods=['POST', 'GET'])
+def simulacao_rdc_progressivo(): 
+    return render_template('simulacao_rdc_progressivo.html', titulo_navegador="Simulação RDC Progressivo- Plataforma de Investimentos") 
 
 @app.route('/salvar_simulacao', methods=['POST', ])
 def salvar_simulacao():
