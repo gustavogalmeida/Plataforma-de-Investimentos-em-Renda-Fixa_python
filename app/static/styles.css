@@ -49,3 +49,22 @@ a {
 a:hover {
     color: #00AE9D;
 }
+
+.nav-link {
+    color: #018578;
+}
+
+.nav-link:hover {
+    color: #00AE9D;
+    background-color: white;
+}
+
+.botao-manual {
+    margin-top: 10px;
+}
+
+.quadro-manual {
+    border: 2px solid #ccc; /* Adiciona uma borda sólida de 2px com cor cinza */
+    border-radius: 8px; /* Arredonda as bordas */
+    background-color: white; /* Define a cor de fundo */
+}
